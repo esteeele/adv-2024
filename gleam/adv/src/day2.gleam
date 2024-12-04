@@ -7,7 +7,7 @@ import gleam/result
 import gleam/string
 import simplifile
 
-pub fn day_4() {
+pub fn day_2() {
   let assert Ok(contents) = simplifile.read("data/input.txt")
 
   let split_file = string.split(contents, "\n")
