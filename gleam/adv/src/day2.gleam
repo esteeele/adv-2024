@@ -6,6 +6,7 @@ import gleam/option
 import gleam/result
 import gleam/string
 import simplifile
+import utils
 
 pub fn day_2() {
   let assert Ok(contents) = simplifile.read("data/input.txt")
@@ -13,12 +14,7 @@ pub fn day_2() {
   let split_file = string.split(contents, "\n")
   let stuff =
     list.filter(split_file, fn(s) {
-      let values =
-        string.split(s, " ")
-        |> list.map(fn(val) {
-          let assert Ok(i_val) = int.parse(val)
-          i_val
-        })
+      let values = utils.string_list_to_ints(s, " ")
       // generate all lists each missing one value (do not be smart ... never be smart)
       let all_possible_lists =
         generate_all_lists_missing_one([], values, [values])

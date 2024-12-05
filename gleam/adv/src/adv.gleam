@@ -1,4 +1,5 @@
 import day2
+import day3
 import gleam/erlang/os
 import gleam/io
 import simplifile
@@ -12,6 +13,5 @@ pub fn main() {
   }
 
   let assert Ok(_) = simplifile.read("data/input.txt")
-
-  day2.day_2()
+  day3.day_2()
 }
