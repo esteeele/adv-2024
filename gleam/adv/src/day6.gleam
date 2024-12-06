@@ -89,8 +89,8 @@ pub fn solve() {
               #(x, y, direction),
               set.from_list([]),
               set.from_list([]),
-              9,
-              9,
+              board_size - 1,
+              board_size - 1,
             )
           case visited_nodes {
             Ok(_) -> False
@@ -159,31 +159,20 @@ fn play_game(
       let has_block = list.first(blocking_piece)
       case has_block {
         Ok(blocker) -> {
-          case
-            set.contains(guard_positions, #(blocker.x, blocker.y, direction))
-          {
-            True -> {
-              io.debug(blocker)
-              Error(-1)
-            }
-            False -> {
-              let visited_nodes = visit_nodes(Block(x, y), blocker)
-              let updated_visited_nodes =
-                set.union(set.from_list(visited_nodes), acc)
-              let assert Ok(#(new_guard_x, new_guard_y)) =
-                list.first(visited_nodes)
-              play_game(
-                blocks,
-                x_lookup,
-                y_lookup,
-                #(new_guard_x, new_guard_y, new_direction),
-                updated_visited_nodes,
-                set.union(guard_positions, set.from_list([#(x, y, direction)])),
-                number_columns,
-                number_rows,
-              )
-            }
-          }
+          let visited_nodes = visit_nodes(Block(x, y), blocker)
+          let updated_visited_nodes =
+            set.union(set.from_list(visited_nodes), acc)
+          let assert Ok(#(new_guard_x, new_guard_y)) = list.first(visited_nodes)
+          play_game(
+            blocks,
+            x_lookup,
+            y_lookup,
+            #(new_guard_x, new_guard_y, new_direction),
+            updated_visited_nodes,
+            set.union(guard_positions, set.from_list([#(x, y, direction)])),
+            number_columns,
+            number_rows,
+          )
         }
         _ -> {
           // the end 
