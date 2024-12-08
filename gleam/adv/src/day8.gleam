@@ -61,7 +61,7 @@ pub fn day8() {
       let pairs = gen_line_pairs([], value)
       list.map(pairs, fn(pair) {
         let #(p1, p2) = pair
-        gen_antinodes_rec_forward(p1, p2, board_size)
+        gen_all_antinodes(p1, p2, board_size)
       })
       |> list.append(acc)
     })
@@ -108,7 +108,7 @@ pub fn gen_antinodes(a: Point, b: Point) -> #(Point, Point) {
   #(antinode(b.x + dx, b.y + dy), antinode(a.x - dx, a.y - dy))
 }
 
-pub fn gen_antinodes_rec_forward(a: Point, b: Point, board_size) -> List(Point) {
+pub fn gen_all_antinodes(a: Point, b: Point, board_size) -> List(Point) {
   // to make this cleverer should have known the magnitude of the gradient and used that to guide the expansion 
   let dx = b.x - a.x
   let dy = b.y - a.y

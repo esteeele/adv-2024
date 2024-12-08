@@ -21,6 +21,7 @@ pub fn gen_antinodes_test() {
 pub fn gen_antinodes_test_p2() {
   let point1 = day8.Point(5, 4, "a")
   let point2 = day8.Point(7, 5, "a")
-  let results = day8.gen_antinodes_rec_forward(point1, point2, 12)
-  io.debug(results)
+  let results = day8.gen_all_antinodes(point1, point2, 12)
+
+  should.equal(results, [day8.Point(9, 6, "a"), day8.Point(11, 7, "a")])
 }
