@@ -1,12 +1,12 @@
 import gleam/dict
 import gleam/int
-import gleam/io
 import gleam/list
 import gleam/string
 import simplifile
 
 pub fn string_list_to_ints(s: String, split_on: String) {
   string.split(s, split_on)
+  |> list.filter(fn(s) { !string.is_empty(s) })
   |> list.map(fn(val) {
     let assert Ok(i_val) = int.parse(val)
     i_val

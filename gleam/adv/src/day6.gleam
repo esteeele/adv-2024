@@ -69,16 +69,8 @@ pub fn solve() {
     |> result.unwrap(set.from_list([]))
 
   let part_2 =
-    list.map(list.range(0, board_size * board_size), fn(i) {
-      let x_pos = i % board_size
-      let y_pos = i / board_size
-      #(x_pos, y_pos)
-    })
-    |> list.filter(fn(pair) {
-      // only check nodes actually walked in the 'normal' route
-      let #(x_pos, y_pos) = pair
-      set.contains(visited_nodes, #(x_pos, y_pos))
-    })
+    visited_nodes
+    |> set.to_list
     |> list.filter(fn(pair) {
       let #(x_pos, y_pos) = pair
 
@@ -110,7 +102,7 @@ pub fn solve() {
         }
       }
     })
-  io.debug(part_2)
+
   io.debug(part_2 |> list.length)
 }
 

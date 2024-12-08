@@ -1,7 +1,9 @@
 import day2
 import day3
 import day6
+import day7
 import gleam/erlang/os
+import gleam/int
 import gleam/io
 import simplifile
 
@@ -13,6 +15,6 @@ pub fn main() {
     Error(error) -> io.println("not found")
   }
 
-  let assert Ok(_) = simplifile.read("data/input.txt")
-  day6.solve()
+  let res = day7.day7()
+  io.debug(res)
 }
