@@ -30,3 +30,9 @@ pub fn add_to_dict(acc: dict.Dict(Int, List(Int)), pair: #(Int, Int)) {
     _ -> dict.insert(acc, left, [right])
   }
 }
+
+pub fn map_index_to_coords(i, row_size) {
+  let x = i % row_size
+  let y = i / row_size
+  #(x, y)
+}
