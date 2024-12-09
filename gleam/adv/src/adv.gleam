@@ -3,6 +3,7 @@ import day3
 import day6
 import day7
 import day8
+import day9
 import gleam/erlang/os
 import gleam/int
 import gleam/io
@@ -16,5 +17,5 @@ pub fn main() {
     Error(error) -> io.println("not found")
   }
 
-  day8.day8()
+  day9.day9()
 }
