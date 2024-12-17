@@ -31,8 +31,21 @@ pub fn add_to_dict(acc: dict.Dict(Int, List(Int)), pair: #(Int, Int)) {
   }
 }
 
+pub fn increment_frequency(acc: dict.Dict(a, Int), a, by: Int) {
+  let existing_frequency = dict.get(acc, a)
+  case existing_frequency {
+    Ok(current) -> dict.insert(acc, a, current + by)
+    _ -> dict.insert(acc, a, by)
+  }
+}
+
 pub fn map_index_to_coords(i, row_size) {
   let x = i % row_size
   let y = i / row_size
   #(x, y)
+}
+
+pub fn to_frequencies(input: List(a)) {
+  list.group(input, fn(value) { value })
+  |> dict.map_values(fn(_, v) { list.length(v) })
 }

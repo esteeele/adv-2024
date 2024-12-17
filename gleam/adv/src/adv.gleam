@@ -1,3 +1,5 @@
+import day11
+import day12
 import day2
 import day3
 import day6
@@ -17,5 +19,6 @@ pub fn main() {
     Error(error) -> io.println("not found")
   }
 
-  day9.day9()
+  let the_answer = day12.day12()
+  io.debug(the_answer)
 }
