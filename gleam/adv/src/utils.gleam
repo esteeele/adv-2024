@@ -1,3 +1,4 @@
+import gleam/bool
 import gleam/dict
 import gleam/int
 import gleam/list
@@ -48,4 +49,22 @@ pub fn map_index_to_coords(i, row_size) {
 pub fn to_frequencies(input: List(a)) {
   list.group(input, fn(value) { value })
   |> dict.map_values(fn(_, v) { list.length(v) })
+}
+
+pub fn print_board(points: List(#(Int, Int)), board_size) {
+  list.map(list.range(0, board_size - 1), fn(y_index) {
+    list.map(list.range(0, board_size - 1), fn(index) {
+      let has_match =
+        list.find(points, fn(point) {
+          let #(x, y) = point
+          bool.and(x == index, y == y_index)
+        })
+      case has_match {
+        Ok(_) -> "*"
+        Error(_) -> "."
+      }
+    })
+    |> string.concat
+  })
+  |> string.join("\n")
 }
